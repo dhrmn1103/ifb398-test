@@ -1,0 +1,202 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --purple-primary: #7855ff;
+    --purple-light: #f6f4ff;
+    --bg-purple: #b09eff;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
+/* Assuming .scrollbar-x is your container for the tabs */
+.scrollbar-x {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+}
+
+/* Style the scrollbar track */
+.scrollbar-x::-webkit-scrollbar-track {
+  border-radius: 30px; /* To match the container's border-radius */
+  background-color: transparent; /* Makes the track invisible */
+}
+
+/* Style the scrollbar thumb */
+.scrollbar-x::-webkit-scrollbar-thumb {
+  border-radius: 15px; /* Less than the container to fit within the corners */
+  background-color: #ccc; /* This should match your design */
+}
+
+/* Style the scrollbar itself */
+.scrollbar-x::-webkit-scrollbar {
+  height: 4px; /* The thickness of the scrollbar */
+}
+
+.bg-radial-purple {
+  background: radial-gradient(farthest-side at right bottom, var(--bg-purple), #f8fafc);
+}
+.tag-list {
+  width: 100%;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  gap: 1rem 0;
+  position: relative;
+  padding: 5rem 0;
+  overflow: hidden;
+  transform: translateY(-43.5%);
+  opacity: 1;
+}
+
+.loop-slider {
+  .inner {
+    display: flex;
+    width: fit-content;
+    animation-name: loop;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: var(--direction);
+    animation-duration: var(--duration);
+  }
+}
+
+.tag {
+  width: 250px;
+  display: flex;
+  align-items: center;
+  gap: 0 0.2rem;
+  font-size: 0.9rem;
+  border-radius: 0.4rem;
+  padding: 0.7rem 1rem;
+  margin-right: 1rem;
+  span {
+    font-size: 1.2rem;
+    color: #64748b;
+  }
+}
+
+.fade {
+  pointer-events: none;
+  background: linear-gradient(90deg, #7855ff, transparent 30%, transparent 70%, #7855ff);
+  position: absolute;
+  inset: 0;
+}
+
+@keyframes loop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.alter-span-color * {
+  transition: all 1s linear;
+  &.hidden-down {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+}
+
+/* Overrides */
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1800px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .fade {
+    background: linear-gradient(90deg, #7855ff, transparent 15%, transparent 85%, #7855ff);
+  }
+}
+
+/* Animations */
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+}
+
+.hover-underline-animation::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #0f172a;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
